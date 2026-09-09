@@ -1,96 +1,352 @@
-// Korean meaning | English | Japanese. One distinct communication goal per day.
-const rows = `어서 오세요|Welcome to our pharmacy.|薬局へようこそ。
-무엇을 도와드릴까요?|How can I help you?|どのようなご用件でしょうか。
-저는 약사입니다|I'm the pharmacist.|私は薬剤師です。
-영어로 말씀하시겠어요?|Would you like to speak English?|英語でお話ししますか。
-일본어로 말씀하시겠어요?|Would you like to speak Japanese?|日本語でお話ししますか。
-천천히 말씀해 주세요|Please speak slowly.|ゆっくり話してください。
-다시 말씀해 주세요|Could you say that again?|もう一度言っていただけますか。
-적어 주시겠어요?|Could you write it down?|書いていただけますか。
-잠시만 기다려 주세요|Please wait a moment.|少々お待ちください。
-여기에 앉아 주세요|Please have a seat here.|こちらにお掛けください。
-누가 사용할 건가요?|Who is this for?|どなたがお使いになりますか。
-본인이 사용하시나요?|Is this for you?|ご本人がお使いになりますか。
-나이가 어떻게 되세요?|How old are you?|おいくつですか。
-어린이를 위한 건가요?|Is this for a child?|お子様用ですか。
-어떤 증상이 있으세요?|What symptoms do you have?|どのような症状がありますか。
-어디가 불편하세요?|Where do you feel discomfort?|どのあたりがつらいですか。
-언제 시작되었나요?|When did it start?|いつからですか。
-얼마나 오래되었나요?|How long have you had this?|どのくらい続いていますか。
-계속 그런가요?|Is it constant?|ずっと続いていますか。
-전에도 이런 적이 있나요?|Has this happened before?|以前にも同じことがありましたか。
-다른 증상도 있나요?|Do you have any other symptoms?|ほかに症状はありますか。
-열이 있나요?|Do you have a fever?|熱はありますか。
-기침이 나나요?|Do you have a cough?|せきは出ますか。
-목이 아픈가요?|Do you have a sore throat?|のどは痛いですか。
-콧물이 나나요?|Do you have a runny nose?|鼻水は出ますか。
-코가 막히나요?|Do you have a blocked nose?|鼻は詰まっていますか。
-머리가 아픈가요?|Do you have a headache?|頭は痛いですか。
-배가 아픈가요?|Do you have a stomachache?|お腹は痛いですか。
-메스꺼운가요?|Do you feel nauseous?|吐き気はありますか。
-어지러운가요?|Do you feel dizzy?|めまいはありますか。
-설사가 있나요?|Do you have diarrhea?|下痢はありますか。
-변비가 있나요?|Are you constipated?|便秘ですか。
-가려운가요?|Does it itch?|かゆいですか。
-발진이 있나요?|Do you have a rash?|発疹はありますか。
-벌레에 물렸나요?|Were you bitten by an insect?|虫に刺されましたか。
-햇볕에 화상을 입었나요?|Do you have sunburn?|日焼けしましたか。
-상처가 어디에 있나요?|Where is the wound?|傷はどこですか。
-근육이 아픈가요?|Do your muscles hurt?|筋肉は痛いですか。
-눈이 건조한가요?|Do your eyes feel dry?|目は乾きますか。
-콘택트렌즈를 착용하시나요?|Do you wear contact lenses?|コンタクトレンズを使っていますか。
-멀미가 나나요?|Do you get motion sickness?|乗り物酔いをしますか。
-잠들기 어려운가요?|Do you have trouble falling asleep?|寝つきが悪いですか。
-알레르기가 있나요?|Do you have any allergies?|アレルギーはありますか。
-약 알레르기가 있나요?|Are you allergic to any medicines?|薬のアレルギーはありますか。
-어떤 반응이 있었나요?|What kind of reaction did you have?|どのような反応が出ましたか。
-현재 복용 중인 약이 있나요?|Are you taking any medicines?|今、飲んでいる薬はありますか。
-약 이름을 알려 주세요|Please tell me the name of the medicine.|薬の名前を教えてください。
-약 포장을 보여 주세요|Please show me the medicine packaging.|薬のパッケージを見せてください。
-영양제를 드시나요?|Do you take any supplements?|サプリメントを飲んでいますか。
-이미 드신 약이 있나요?|Have you taken anything for this already?|この症状のために、もう何か薬を飲みましたか。
-마지막으로 언제 드셨나요?|When did you last take it?|最後に飲んだのはいつですか。
-임신 중이신가요?|Are you pregnant?|妊娠していますか。
-수유 중이신가요?|Are you breastfeeding?|授乳中ですか。
-치료 중인 질환이 있나요?|Are you being treated for any medical conditions?|現在、治療中の病気はありますか。
-처방전이 있나요?|Do you have a prescription?|処方箋はありますか。
-처방전을 보여 주세요|Please show me your prescription.|処方箋を見せてください。
-성함을 확인하겠습니다|Let me confirm your name.|お名前を確認させてください。
-성분을 확인하겠습니다|Let me check the ingredients.|成分を確認します。
-함께 사용할 수 있는지 확인하겠습니다|Let me check if these can be used together.|一緒に使えるか確認します。
-약사에게 추가로 확인하겠습니다|Let me check with another pharmacist.|ほかの薬剤師に確認します。
-사용법을 설명해 드리겠습니다|I'll explain how to use it.|使い方をご説明します。
-라벨을 함께 확인하겠습니다|Let's look at the label together.|一緒にラベルを確認しましょう。
-복용량을 확인하겠습니다|Let me check the dose.|服用量を確認します。
-복용 시간을 확인하겠습니다|Let me check when to take it.|飲むタイミングを確認します。
-며칠분이 필요한가요?|How many days' supply do you need?|何日分が必要ですか。
-설명서를 읽어 주세요|Please read the instructions.|説明書を読んでください。
-이 부분을 봐 주세요|Please look at this section.|こちらの部分をご覧ください。
-계량 도구가 있나요?|Do you have a measuring device?|計量する道具はありますか。
-보관 방법을 확인하겠습니다|Let me check how to store it.|保管方法を確認します。
-유효기간은 여기에 있습니다|The expiration date is here.|使用期限はこちらです。
-주의사항을 설명하겠습니다|I'll explain the precautions.|注意事項をご説明します。
-운전할 예정인가요?|Are you planning to drive?|運転する予定はありますか。
-이해가 되셨나요?|Was that clear?|ご理解いただけましたか。
-사용법을 다시 말씀해 주시겠어요?|Could you repeat how you will use it?|使い方をもう一度教えていただけますか。
-다른 질문이 있나요?|Do you have any other questions?|ほかにご質問はありますか。
-다시 설명해 드리겠습니다|I'll explain it again.|もう一度ご説明します。
-글로 적어 드리겠습니다|I'll write it down for you.|書いてお渡しします。
-의사와 상담하셨나요?|Have you spoken to a doctor?|医師に相談しましたか。
-가까운 병원을 찾고 계신가요?|Are you looking for a nearby clinic?|近くの病院をお探しですか。
-도움을 요청해 드릴까요?|Would you like me to call for help?|助けを呼びましょうか。
-재고를 확인하겠습니다|Let me check if it is in stock.|在庫を確認します。
-현재 재고가 없습니다|We don't have it in stock right now.|ただいま在庫がありません。
-가격은 여기에 표시되어 있습니다|The price is shown here.|価格はこちらに表示されています。
-카드로 결제하시겠어요?|Would you like to pay by card?|カードでお支払いになりますか。
-현금으로 결제하시겠어요?|Would you like to pay in cash?|現金でお支払いになりますか。
-영수증이 필요하신가요?|Would you like a receipt?|レシートは必要ですか。
-봉투가 필요하신가요?|Would you like a bag?|袋は必要ですか。
-소지품을 확인해 주세요|Please check that you have all your belongings.|お忘れ物がないかご確認ください。
-좋은 여행 되세요|Enjoy the rest of your trip.|引き続き、よいご旅行を。
-방문해 주셔서 감사합니다|Thank you for visiting us.|ご来店ありがとうございました。`;
-export const lessons = rows.split('\n').map((row, index) => {
-  const [ko, en, ja] = row.split('|');
-  return { id: index + 1, month: Math.floor(index / 30) + 1, ko, en, ja };
-});
-export const months = ['첫 만남과 기본 문진', '증상과 배경 확인', '안내와 상담 마무리'];
+// Each situation contains six connected dialogue turns, not six isolated topics.
+// Columns: Korean meaning | English | Japanese | English in Hangul | Japanese in Hangul.
+const situations = [];
+function situation(title, goal, roles, variants, dialogue) {
+  situations.push({ title, goal, roles, variants: variants.trim().split('\n').map(row => row.split('|')), dialogue: dialogue.trim().split('\n').map(row => row.split('|')) });
+}
+
+situation('길 묻고 안내 이해하기', '목적지를 묻고, 방향과 도보 시간을 확인해 보세요.', ['여행객', '현지인'], `
+기차역|the train station|駅|더 트레인 스테이션|에키
+우체국|the post office|郵便局|더 포스트 오피스|유우빈쿄쿠
+관광안내소|the tourist information center|観光案内所|더 투어리스트 인포메이션 센터|칸코오 안나이조`, `
+실례합니다. {x} 위치가 어디인가요?|Excuse me. Where is {x}?|すみません。{x}はどこですか。|익스큐즈 미. 웨어 이즈 {x}?|스미마셍. {x}와 도코 데스카.
+이 길로 곧장 가세요.|Go straight along this street.|この道をまっすぐ行ってください。|고우 스트레이트 얼롱 디스 스트리트.|코노 미치오 맛스구 잇테 쿠다사이.
+다음 모퉁이에서 오른쪽으로 도나요?|Do I turn right at the next corner?|次の角を右に曲がりますか。|두 아이 턴 라이트 앳 더 넥스트 코너?|츠기노 카도오 미기니 마가리마스카.
+네. 오른쪽에 있어요.|Yes. It's on your right.|はい。右側にあります。|예스. 잇츠 온 유어 라이트.|하이. 미기가와니 아리마스.
+걸어서 얼마나 걸리나요?|How long does it take to walk there?|歩いてどのくらいかかりますか。|하우 롱 더즈 잇 테이크 투 워크 데어?|아루이테 도노쿠라이 카카리마스카.
+걸어서 약 5분 걸려요.|It takes about five minutes on foot.|歩いて五分くらいです。|잇 테이크스 어바웃 파이브 미닛츠 온 풋.|아루이테 고훈 쿠라이 데스.
+`);
+situation('약국에서 물건 찾기', '손님이 찾는 물품을 확인하고 위치와 수량을 안내해 보세요.', ['약사', '손님'], `
+반창고|adhesive bandages|ばんそうこう|어드히시브 밴디지즈|반소오코오
+마스크|face masks|マスク|페이스 매스크스|마스쿠
+살균 티슈|disinfecting wipes|除菌シート|디스인펙팅 와이프스|조킨 시이토`, `
+어서 오세요. 무엇을 찾으시나요?|Hello. What are you looking for?|こんにちは。何をお探しですか。|헬로우. 왓 아 유 루킹 포어?|콘니치와. 나니오 오사가시 데스카.
+{x} 있나요?|Do you have {x}?|{x}はありますか。|두 유 해브 {x}?|{x}와 아리마스카.
+네. 이쪽 선반을 봐 주세요.|Yes. Please look on this shelf.|はい。こちらの棚をご覧ください。|예스. 플리즈 룩 온 디스 셸프.|하이. 코치라노 타나오 고란 쿠다사이.
+작은 포장도 있나요?|Do you have a small pack?|小さいサイズもありますか。|두 유 해브 어 스몰 팩?|치이사이 사이즈모 아리마스카.
+네. 몇 개 필요하세요?|Yes. How many do you need?|はい。いくつ必要ですか。|예스. 하우 메니 두 유 니드?|하이. 이쿠츠 히츠요오 데스카.
+하나 주세요. 감사합니다.|One, please. Thank you.|一つください。ありがとうございます。|원, 플리즈. 땡큐.|히토츠 쿠다사이. 아리가토오 고자이마스.
+`);
+situation('약국 방문 목적 확인하기', '인사부터 방문 목적 확인, 상담 시작까지 이어가 보세요.', ['약사', '손님'], `
+여행용품|travel supplies|旅行用品|트래블 서플라이즈|료코오 요오힌
+피부 관리 제품|skin care products|スキンケア用品|스킨 케어 프로덕츠|스킨케아 요오힌
+구강 관리 제품|oral care products|オーラルケア用品|오럴 케어 프로덕츠|오오라루 케아 요오힌`, `
+안녕하세요. 저는 약사입니다.|Hello. I'm the pharmacist.|こんにちは。薬剤師です。|헬로우. 아임 더 파머시스트.|콘니치와. 야쿠자이시 데스.
+{x} 찾는 것을 도와주시겠어요?|Could you help me find {x}?|{x}を探しているのですが。|쿠드 유 헬프 미 파인드 {x}?|{x}오 사가시테 이루노 데스가.
+물론이죠. 본인이 사용하시나요?|Of course. Is it for you?|もちろんです。ご本人用ですか。|어브 코어스. 이즈 잇 포어 유?|모치론 데스. 고혼닌요오 데스카.
+네. 여행 중에 사용하려고요.|Yes. I'll use it during my trip.|はい。旅行中に使います。|예스. 아일 유즈 잇 듀어링 마이 트립.|하이. 료코오추우니 츠카이마스.
+이쪽으로 오세요. 같이 살펴보죠.|Please come this way. Let's take a look.|こちらへどうぞ。一緒に見てみましょう。|플리즈 컴 디스 웨이. 렛츠 테이크 어 룩.|코치라에 도오조. 잇쇼니 미테 미마쇼오.
+감사합니다. 도움이 많이 되네요.|Thank you. That's very helpful.|ありがとうございます。助かります。|땡큐. 댓츠 베리 헬프풀.|아리가토오 고자이마스. 타스카리마스.
+`);
+situation('지하철 타기', '목적지행 열차, 승강장, 환승 여부를 물어보세요.', ['여행객', '역무원'], `
+공항|the airport|空港|디 에어포트|쿠우코오
+시청|city hall|市役所|시티 홀|시야쿠쇼
+중앙역|Central Station|中央駅|센트럴 스테이션|추우오오에키`, `
+{x} 가는 열차는 어느 것인가요?|Which train goes to {x}?|{x}へ行く電車はどれですか。|위치 트레인 고우즈 투 {x}?|{x}에 이쿠 덴샤와 도레 데스카.
+2번 승강장에서 타세요.|Take the train from platform two.|二番ホームから乗ってください。|테이크 더 트레인 프럼 플랫폼 투.|니반 호오무카라 놋테 쿠다사이.
+갈아타야 하나요?|Do I need to change trains?|乗り換えは必要ですか。|두 아이 니드 투 체인지 트레인즈?|노리카에와 히츠요오 데스카.
+아니요. 직행이에요.|No. It's a direct train.|いいえ。乗り換えはありません。|노우. 잇츠 어 다이렉트 트레인.|이이에. 노리카에와 아리마셍.
+어디에서 표를 살 수 있나요?|Where can I buy a ticket?|切符はどこで買えますか。|웨어 캔 아이 바이 어 티킷?|킷푸와 도코데 카에마스카.
+저기 있는 발매기에서 살 수 있어요.|You can buy one at that machine.|あそこの券売機で買えます。|유 캔 바이 원 앳 댓 머신.|아소코노 켄바이키데 카에마스.
+`);
+situation('택시로 이동하기', '목적지와 예상 요금, 내릴 장소를 전달해 보세요.', ['승객', '기사'], `
+호텔|the hotel|ホテル|더 호텔|호테루
+박물관|the museum|博物館|더 뮤지엄|하쿠부츠칸
+항구|the harbor|港|더 하버|미나토`, `
+{x}까지 가 주세요.|Please take me to {x}.|{x}までお願いします。|플리즈 테이크 미 투 {x}.|{x}마데 오네가이시마스.
+주소를 보여 주시겠어요?|Could you show me the address?|住所を見せていただけますか。|쿠드 유 쇼우 미 디 어드레스?|주우쇼오 미세테 이타다케마스카.
+여기 있어요. 요금은 대략 얼마인가요?|Here it is. About how much will it cost?|こちらです。料金はいくらくらいですか。|히어 잇 이즈. 어바웃 하우 머치 윌 잇 코스트?|코치라 데스. 료오킨와 이쿠라 쿠라이 데스카.
+교통 상황에 따라 달라요.|It depends on the traffic.|交通状況によります。|잇 디펜즈 온 더 트래픽.|코오츠우 조오쿄오니 요리마스.
+입구 앞에서 내려 주세요.|Please drop me off at the entrance.|入口の前で降ろしてください。|플리즈 드랍 미 오프 앳 디 엔트런스.|이리구치노 마에데 오로시테 쿠다사이.
+알겠습니다. 도착하면 알려 드릴게요.|Certainly. I'll let you know when we arrive.|わかりました。着いたらお知らせします。|서튼리. 아일 렛 유 노우 웬 위 어라이브.|와카리마시타. 츠이타라 오시라세시마스.
+`);
+situation('숙소에 체크인하기', '예약 확인과 체크인, 필요한 시설을 물어보세요.', ['투숙객', '직원'], `
+와이파이|Wi-Fi|ワイファイ|와이파이|와이파이
+조식|breakfast|朝食|브렉퍼스트|초오쇼쿠
+주차장|parking|駐車場|파킹|추우샤조오`, `
+안녕하세요. 예약했어요.|Hello. I have a reservation.|こんにちは。予約しています。|헬로우. 아이 해브 어 레저베이션.|콘니치와. 요야쿠 시테이마스.
+성함이 어떻게 되세요?|May I have your name?|お名前を教えていただけますか。|메이 아이 해브 유어 네임?|오나마에오 오시에테 이타다케마스카.
+김입니다. 지금 체크인할 수 있나요?|It's Kim. Can I check in now?|キムです。今チェックインできますか。|잇츠 킴. 캔 아이 체크 인 나우?|키무 데스. 이마 첵쿠인 데키마스카.
+네. 여기 객실 열쇠입니다.|Yes. Here is your room key.|はい。こちらがお部屋の鍵です。|예스. 히어 이즈 유어 룸 키.|하이. 코치라가 오헤야노 카기 데스.
+{x} 이용이 가능한가요?|Is {x} available?|{x}は利用できますか。|이즈 {x} 어베일러블?|{x}와 리요오 데키마스카.
+네. 자세한 내용은 여기 있습니다.|Yes. The details are here.|はい。詳しい案内はこちらです。|예스. 더 디테일즈 아 히어.|하이. 쿠와시이 안나이와 코치라 데스.
+`);
+situation('식당에서 주문하기', '메뉴를 요청하고 음식과 포장 여부를 확인해 보세요.', ['손님', '직원'], `
+야채 수프|vegetable soup|野菜スープ|베지터블 수프|야사이 수우푸
+샌드위치|a sandwich|サンドイッチ|어 샌드위치|산도잇치
+샐러드|a salad|サラダ|어 샐러드|사라다`, `
+메뉴를 볼 수 있을까요?|Could I see the menu?|メニューを見せていただけますか。|쿠드 아이 씨 더 메뉴?|메뉴우오 미세테 이타다케마스카.
+네. 여기 있습니다.|Certainly. Here you are.|はい。どうぞ。|서튼리. 히어 유 아.|하이. 도오조.
+{x} 주세요.|I'd like {x}, please.|{x}をお願いします。|아이드 라이크 {x}, 플리즈.|{x}오 오네가이시마스.
+매장에서 드시나요, 포장하시나요?|For here or to go?|店内でお召し上がりですか。お持ち帰りですか。|포어 히어 오어 투 고우?|텐나이데 오메시아가리 데스카. 오모치카에리 데스카.
+포장해 주세요. 얼마나 걸리나요?|To go, please. How long will it take?|持ち帰りでお願いします。どのくらいかかりますか。|투 고우, 플리즈. 하우 롱 윌 잇 테이크?|모치카에리데 오네가이시마스. 도노쿠라이 카카리마스카.
+약 10분 걸립니다.|It will take about ten minutes.|十分くらいかかります。|잇 윌 테이크 어바웃 텐 미닛츠.|줏푼 쿠라이 카카리마스.
+`);
+situation('가게 영업시간 확인하기', '가게 위치와 오늘의 영업시간을 확인해 보세요.', ['여행객', '안내 직원'], `
+약국|a pharmacy|薬局|어 파머시|약쿄쿠
+슈퍼마켓|a supermarket|スーパー|어 수퍼마켓|수우파아
+서점|a bookstore|本屋|어 북스토어|혼야`, `
+이 근처에 {x} 있나요?|Is there {x} nearby?|この近くに{x}はありますか。|이즈 데어 {x} 니어바이?|코노 치카쿠니 {x}와 아리마스카.
+네. 길 건너편에 있어요.|Yes. It's across the street.|はい。道の向かいにあります。|예스. 잇츠 어크로스 더 스트리트.|하이. 미치노 무카이니 아리마스.
+지금 문이 열려 있나요?|Is it open now?|今、開いていますか。|이즈 잇 오픈 나우?|이마, 아이테 이마스카.
+네. 오늘 영업 중이에요.|Yes. It's open today.|はい。今日は営業しています。|예스. 잇츠 오픈 투데이.|하이. 쿄오와 에이교오 시테이마스.
+몇 시에 닫나요?|What time does it close?|何時に閉まりますか。|왓 타임 더즈 잇 클로우즈?|난지니 시마리마스카.
+오후 8시에 닫아요.|It closes at eight p.m.|午後八時に閉まります。|잇 클로우지즈 앳 에이트 피엠.|고고 하치지니 시마리마스.
+`);
+situation('분실물 문의하기', '잃어버린 물건과 마지막으로 본 장소를 설명해 보세요.', ['여행객', '직원'], `
+지갑|my wallet|財布|마이 월릿|사이후
+휴대전화|my phone|携帯電話|마이 포운|케에타이 덴와
+가방|my bag|かばん|마이 백|카방`, `
+{x} 잃어버렸어요.|I've lost {x}.|{x}をなくしました。|아이브 로스트 {x}.|{x}오 나쿠시마시타.
+마지막으로 어디에서 보셨나요?|Where did you last see it?|最後に見たのはどこですか。|웨어 디드 유 라스트 씨 잇?|사이고니 미타노와 도코 데스카.
+대기실에 있었어요.|It was in the waiting room.|待合室にありました。|잇 워즈 인 더 웨이팅 룸.|마치아이시츠니 아리마시타.
+어떻게 생겼나요?|What does it look like?|どのようなものですか。|왓 더즈 잇 룩 라이크?|도노요오나 모노 데스카.
+작고 검은색이에요.|It's small and black.|小さくて黒いです。|잇츠 스몰 앤 블랙.|치이사쿠테 쿠로이 데스.
+분실물 보관소에 확인해 볼게요.|I'll check with lost and found.|遺失物係に確認します。|아일 체크 위드 로스트 앤 파운드.|이시츠부츠가카리니 카쿠닌시마스.
+`);
+situation('표를 예약하기', '목적지 표를 요청하고 시간과 왕복 여부를 정해 보세요.', ['여행객', '직원'], `
+서울|Seoul|ソウル|서울|소우루
+부산|Busan|プサン|부산|푸산
+도쿄|Tokyo|東京|토우키오우|토오쿄오`, `
+{x} 가는 표 한 장 주세요.|One ticket to {x}, please.|{x}まで一枚お願いします。|원 티킷 투 {x}, 플리즈.|{x}마데 이치마이 오네가이시마스.
+편도인가요, 왕복인가요?|One way or round trip?|片道ですか。往復ですか。|원 웨이 오어 라운드 트립?|카타미치 데스카. 오오후쿠 데스카.
+편도요. 다음 출발은 몇 시인가요?|One way. When is the next departure?|片道です。次の出発は何時ですか。|원 웨이. 웬 이즈 더 넥스트 디파처?|카타미치 데스. 츠기노 슛파츠와 난지 데스카.
+오전 10시입니다.|It's at ten a.m.|午前十時です。|잇츠 앳 텐 에이엠.|고젠 주우지 데스.
+좌석을 선택할 수 있나요?|Can I choose my seat?|席を選べますか。|캔 아이 추즈 마이 시트?|세키오 에라베마스카.
+네. 창가 자리도 있어요.|Yes. A window seat is available.|はい。窓側の席もあります。|예스. 어 윈도우 시트 이즈 어베일러블.|하이. 마도가와노 세키모 아리마스.
+`);
+situation('손님의 증상 듣기', '증상을 듣고 시작 시점과 다른 불편함을 확인해 보세요.', ['약사', '손님'], `
+기침|a cough|せき|어 코프|세키
+두통|a headache|頭痛|어 헤드에이크|즈츠우
+콧물|a runny nose|鼻水|어 러니 노우즈|하나미즈`, `
+어떤 증상이 있으세요?|What symptoms do you have?|どのような症状がありますか。|왓 심프텀즈 두 유 해브?|도노요오나 쇼오조오가 아리마스카.
+{x} 때문에 왔어요.|I'm here because of {x}.|{x}があるので来ました。|아임 히어 비코즈 어브 {x}.|{x}가 아루노데 키마시타.
+언제 시작되었나요?|When did it start?|いつからですか。|웬 디드 잇 스타트?|이츠카라 데스카.
+어젯밤에 시작되었어요.|It started last night.|昨日の夜からです。|잇 스타티드 라스트 나이트.|키노오노 요루카라 데스.
+다른 증상도 있나요?|Do you have any other symptoms?|ほかに症状はありますか。|두 유 해브 에니 아더 심프텀즈?|호카니 쇼오조오와 아리마스카.
+아니요. 지금은 그것뿐이에요.|No. That's all for now.|いいえ。今はそれだけです。|노우. 댓츠 올 포어 나우.|이이에. 이마와 소레다케 데스.
+`);
+situation('불편한 부위 확인하기', '불편한 곳을 가리키도록 부탁하고 지속 여부를 물어보세요.', ['약사', '손님'], `
+목|my throat|のど|마이 쓰로우트|노도
+배|my stomach|お腹|마이 스터먹|오나카
+허리|my lower back|腰|마이 로우어 백|코시`, `
+어디가 불편하세요?|Where do you feel discomfort?|どこがつらいですか。|웨어 두 유 필 디스컴퍼트?|도코가 츠라이 데스카.
+{x} 부위가 아파요.|I have pain in {x}.|{x}が痛いです。|아이 해브 페인 인 {x}.|{x}가 이타이 데스.
+어디인지 가리켜 주시겠어요?|Could you point to where it hurts?|痛いところを指していただけますか。|쿠드 유 포인트 투 웨어 잇 허츠?|이타이 토코로오 사시테 이타다케마스카.
+바로 여기요.|Right here.|ここです。|라이트 히어.|코코 데스.
+계속 아픈가요?|Does it hurt all the time?|ずっと痛いですか。|더즈 잇 허트 올 더 타임?|즛토 이타이 데스카.
+아니요. 아프다 괜찮아졌다 해요.|No. It comes and goes.|いいえ。痛くなったり治まったりします。|노우. 잇 컴즈 앤 고우즈.|이이에. 이타쿠 낫타리 오사맛타리 시마스.
+`);
+situation('알레르기 이력 확인하기', '알레르기 대상과 이전 반응을 확인하는 대화를 연습하세요.', ['약사', '손님'], `
+페니실린|penicillin|ペニシリン|페니실린|페니시린
+라텍스|latex|ラテックス|레이텍스|라텍쿠스
+접착제|adhesives|粘着剤|어드히시브즈|넨차쿠자이`, `
+알레르기가 있나요?|Do you have any allergies?|アレルギーはありますか。|두 유 해브 에니 앨러지즈?|아레루기이와 아리마스카.
+{x} 알레르기가 있어요.|I'm allergic to {x}.|{x}にアレルギーがあります。|아임 얼러직 투 {x}.|{x}니 아레루기이가 아리마스.
+어떤 반응이 있었나요?|What kind of reaction did you have?|どのような反応が出ましたか。|왓 카인드 어브 리액션 디드 유 해브?|도노요오나 한노오가 데마시타카.
+발진이 생겼어요.|I developed a rash.|発疹が出ました。|아이 디벨럽트 어 래시.|핫신가 데마시타.
+알려 주셔서 감사합니다. 성분을 확인할게요.|Thank you for telling me. I'll check the ingredients.|教えてくださってありがとうございます。成分を確認します。|땡큐 포어 텔링 미. 아일 체크 디 인그리디언츠.|오시에테 쿠다삿테 아리가토오 고자이마스. 세이분오 카쿠닌시마스.
+네. 확인해 주세요.|Yes, please check.|はい。確認をお願いします。|예스, 플리즈 체크.|하이. 카쿠닌오 오네가이시마스.
+`);
+situation('복용 중인 제품 확인하기', '사용 중인 제품과 마지막 복용 시점, 포장을 확인해 보세요.', ['약사', '손님'], `
+비타민|vitamins|ビタミン剤|바이타민즈|비타민자이
+알레르기약|allergy medicine|アレルギーの薬|앨러지 메디슨|아레루기이노 쿠스리
+감기약|cold medicine|風邪薬|콜드 메디슨|카제구스리`, `
+현재 약이나 영양제를 드시나요?|Are you taking any medicines or supplements?|今、薬やサプリメントを飲んでいますか。|아 유 테이킹 에니 메디슨즈 오어 서플리먼츠?|이마, 쿠스리야 사푸리멘토오 논데이마스카.
+{x} 복용 중이에요.|I'm taking {x}.|{x}を飲んでいます。|아임 테이킹 {x}.|{x}오 논데이마스.
+포장을 보여 주시겠어요?|Could you show me the packaging?|パッケージを見せていただけますか。|쿠드 유 쇼우 미 더 패키징?|팟케에지오 미세테 이타다케마스카.
+네. 휴대전화에 사진이 있어요.|Yes. I have a photo on my phone.|はい。携帯に写真があります。|예스. 아이 해브 어 포우토우 온 마이 포운.|하이. 케에타이니 샤신가 아리마스.
+마지막으로 언제 드셨나요?|When did you last take it?|最後に飲んだのはいつですか。|웬 디드 유 라스트 테이크 잇?|사이고니 논다노와 이츠 데스카.
+오늘 아침에 먹었어요.|I took it this morning.|今朝飲みました。|아이 툭 잇 디스 모닝.|케사 노미마시타.
+`);
+situation('누가 사용할지 확인하기', '가족을 위한 구매에서 사용자의 나이와 배경을 확인해 보세요.', ['약사', '손님'], `
+딸|my daughter|娘|마이 도터|무스메
+아들|my son|息子|마이 선|무스코
+어머니|my mother|母|마이 마더|하하`, `
+누가 사용할 건가요?|Who is this for?|どなたがお使いになりますか。|후 이즈 디스 포어?|도나타가 오츠카이니 나리마스카.
+{x}에게 필요한 거예요.|It's for {x}.|{x}が使います。|잇츠 포어 {x}.|{x}가 츠카이마스.
+사용하실 분의 나이를 알려 주세요.|Please tell me their age.|使う方の年齢を教えてください。|플리즈 텔 미 데어 에이지.|츠카우 카타노 넨레이오 오시에테 쿠다사이.
+잠시만요. 정확히 확인할게요.|One moment. Let me check.|少し待ってください。確認します。|원 모먼트. 렛 미 체크.|스코시 맛테 쿠다사이. 카쿠닌시마스.
+복용 중인 약도 확인해 주세요.|Please also check what medicines they take.|飲んでいる薬も確認してください。|플리즈 올소우 체크 왓 메디슨즈 데이 테이크.|논데이루 쿠스리모 카쿠닌시테 쿠다사이.
+네. 가족에게 물어볼게요.|Yes. I'll ask my family.|はい。家族に聞いてみます。|예스. 아일 애스크 마이 패밀리.|하이. 카조쿠니 키이테 미마스.
+`);
+situation('제품 재고 확인하기', '재고가 없는 상황에서 포장 크기와 입고 문의를 응대해 보세요.', ['약사', '손님'], `
+여행용 칫솔|travel toothbrushes|旅行用の歯ブラシ|트래블 투쓰브러시즈|료코오요오노 하부라시
+귀마개|earplugs|耳栓|이어플러그즈|미미센
+손 소독제|hand sanitizer|手指消毒剤|핸드 새니타이저|슈시 쇼오도쿠자이`, `
+어떤 제품이 필요한가요?|Which product do you need?|どの商品が必要ですか。|위치 프로덕트 두 유 니드?|도노 쇼오힌가 히츠요오 데스카.
+{x} 있나요?|Do you have {x} in stock?|{x}の在庫はありますか。|두 유 해브 {x} 인 스탁?|{x}노 자이코와 아리마스카.
+확인해 볼게요. 지금은 재고가 없네요.|Let me check. It's out of stock right now.|確認します。ただいま在庫がありません。|렛 미 체크. 잇츠 아웃 어브 스탁 라이트 나우.|카쿠닌시마스. 타다이마 자이코가 아리마셍.
+다른 크기의 제품은 있나요?|Do you have a different size?|違うサイズはありますか。|두 유 해브 어 디퍼런트 사이즈?|치가우 사이즈와 아리마스카.
+네. 이 크기는 있어요.|Yes. We have this size.|はい。このサイズならあります。|예스. 위 해브 디스 사이즈.|하이. 코노 사이즈나라 아리마스.
+그 제품을 보여 주세요.|Please show me that one.|それを見せてください。|플리즈 쇼우 미 댓 원.|소레오 미세테 쿠다사이.
+`);
+situation('상품 비교 도와주기', '두 제품을 보여 주고 차이와 손님의 선호를 확인해 보세요.', ['약사', '손님'], `
+자외선 차단제|sunscreen|日焼け止め|선스크린|히야케도메
+보습제|moisturizer|保湿剤|모이스처라이저|호시츠자이
+립밤|lip balm|リップクリーム|립 밤|릿푸 쿠리이무`, `
+어떤 종류를 찾으세요?|What kind are you looking for?|どのようなものをお探しですか。|왓 카인드 아 유 루킹 포어?|도노요오나 모노오 오사가시 데스카.
+{x} 찾고 있어요.|I'm looking for {x}.|{x}を探しています。|아임 루킹 포어 {x}.|{x}오 사가시테이마스.
+이 두 제품을 비교해 보세요.|You can compare these two products.|こちらの二つの商品を比べてみてください。|유 캔 컴페어 디즈 투 프로덕츠.|코치라노 후타츠노 쇼오힌오 쿠라베테 미테 쿠다사이.
+차이가 무엇인가요?|What's the difference?|違いは何ですか。|왓츠 더 디퍼런스?|치가이와 난 데스카.
+용량이 달라요. 라벨을 함께 볼까요?|The sizes are different. Shall we read the labels?|容量が違います。一緒にラベルを見ましょうか。|더 사이즈즈 아 디퍼런트. 섈 위 리드 더 레이블즈?|요오료오가 치가이마스. 잇쇼니 라베루오 미마쇼오카.
+네. 작은 쪽을 보고 싶어요.|Yes. I'd like to see the smaller one.|はい。小さいほうを見たいです。|예스. 아이드 라이크 투 씨 더 스몰러 원.|하이. 치이사이 호오오 미타이 데스.
+`);
+situation('결제 수단 안내하기', '결제 방법과 절차를 설명하고 결제 완료까지 응대해 보세요.', ['약사', '손님'], `
+카드|a card|カード|어 카드|카아도
+현금|cash|現金|캐시|겐킨
+휴대전화|my phone|スマートフォン|마이 포운|스마아토폰`, `
+결제하시겠어요?|Are you ready to pay?|お会計でよろしいですか。|아 유 레디 투 페이?|오카이케이데 요로시이 데스카.
+{x} 결제가 가능한가요?|Can I pay with {x}?|{x}で払えますか。|캔 아이 페이 위드 {x}?|{x}데 하라에마스카.
+네. 여기에서 결제하시면 됩니다.|Yes. You can pay here.|はい。こちらでお支払いください。|예스. 유 캔 페이 히어.|하이. 코치라데 오시하라이 쿠다사이.
+화면의 금액이 맞나요?|Is the amount on the screen correct?|画面の金額で合っていますか。|이즈 디 어마운트 온 더 스크린 커렉트?|가멘노 킨가쿠데 앗테 이마스카.
+네. 결제가 완료되었어요.|Yes. Your payment is complete.|はい。お支払いが完了しました。|예스. 유어 페이먼트 이즈 컴플리트.|하이. 오시하라이가 칸료오시마시타.
+감사합니다. 영수증도 주세요.|Thank you. I'd like a receipt, too.|ありがとうございます。レシートもお願いします。|땡큐. 아이드 라이크 어 리시트, 투.|아리가토오 고자이마스. 레시이토모 오네가이시마스.
+`);
+situation('구매 물품 포장하기', '구매한 물건을 나누어 포장하고 누락된 물품을 확인해 보세요.', ['약사', '손님'], `
+세면용품|the toiletries|洗面用具|더 토일러트리즈|센멘요오구
+선물|the gifts|プレゼント|더 기프츠|푸레젠토
+유리병|the glass bottles|ガラス瓶|더 글래스 바틀즈|가라스빈`, `
+봉투가 필요하신가요?|Would you like a bag?|袋は必要ですか。|우드 유 라이크 어 백?|후쿠로와 히츠요오 데스카.
+네. {x} 따로 담아 주세요.|Yes. Please pack {x} separately.|はい。{x}は別に入れてください。|예스. 플리즈 팩 {x} 세퍼럿리.|하이. {x}와 베츠니 이레테 쿠다사이.
+알겠습니다. 봉투 두 개로 나눌게요.|Certainly. I'll use two bags.|かしこまりました。袋を二つに分けます。|서튼리. 아일 유즈 투 백즈.|카시코마리마시타. 후쿠로오 후타츠니 와케마스.
+영수증은 어디에 있나요?|Where is the receipt?|レシートはどこですか。|웨어 이즈 더 리시트?|레시이토와 도코 데스카.
+첫 번째 봉투 안에 있어요.|It's in the first bag.|一つ目の袋に入っています。|잇츠 인 더 퍼스트 백.|히토츠메노 후쿠로니 하잇테이마스.
+확인했어요. 감사합니다.|I've got it. Thank you.|確認しました。ありがとうございます。|아이브 갓 잇. 땡큐.|카쿠닌시마시타. 아리가토오 고자이마스.
+`);
+situation('사용 설명서 함께 읽기', '설명서에서 필요한 부분을 찾아 이해했는지 확인해 보세요.', ['약사', '손님'], `
+사용법|the instructions for use|使い方|디 인스트럭션즈 포어 유즈|츠카이카타
+보관 방법|the storage instructions|保管方法|더 스토리지 인스트럭션즈|호칸호오호오
+주의사항|the precautions|注意事項|더 프리코션즈|추우이지코오`, `
+설명이 필요한 부분이 있나요?|Is there anything you'd like me to explain?|説明が必要なところはありますか。|이즈 데어 에니씽 유드 라이크 미 투 익스플레인?|세츠메이가 히츠요오나 토코로와 아리마스카.
+{x} 설명해 주세요.|Please explain {x}.|{x}を説明してください。|플리즈 익스플레인 {x}.|{x}오 세츠메이시테 쿠다사이.
+설명서를 함께 보겠습니다.|Let's look at the leaflet together.|一緒に説明書を見ましょう。|렛츠 룩 앳 더 리플릿 투게더.|잇쇼니 세츠메이쇼오 미마쇼오.
+어느 부분인가요?|Which section is it?|どの部分ですか。|위치 섹션 이즈 잇?|도노 부분 데스카.
+이 부분입니다. 읽고 궁금한 점을 알려 주세요.|This section. Please read it and ask any questions.|この部分です。読んで、質問があれば教えてください。|디스 섹션. 플리즈 리드 잇 앤 애스크 에니 퀘스천즈.|코노 부분 데스. 욘데, 시츠몬가 아레바 오시에테 쿠다사이.
+네. 천천히 읽어 볼게요.|Okay. I'll read it carefully.|はい。ゆっくり読んでみます。|오우케이. 아일 리드 잇 케어풀리.|하이. 윳쿠리 욘데 미마스.
+`);
+situation('잘 들리지 않을 때 되묻기', '잘 못 들은 정보를 정중하게 다시 묻고 확인해 보세요.', ['약사', '손님'], `
+제품 이름|the product name|商品名|더 프로덕트 네임|쇼오힌메이
+방문 날짜|the date of your visit|来店日|더 데이트 어브 유어 비짓|라이텐비
+예약 시간|your appointment time|予約時間|유어 어포인트먼트 타임|요야쿠지칸`, `
+죄송해요. 잘 못 들었어요.|Sorry. I didn't catch that.|すみません。よく聞き取れませんでした。|쏘리. 아이 디든트 캐치 댓.|스미마셍. 요쿠 키키토레마셍데시타.
+다시 말씀드릴까요?|Would you like me to repeat it?|もう一度言いましょうか。|우드 유 라이크 미 투 리피트 잇?|모오 이치도 이이마쇼오카.
+네. {x} 천천히 말씀해 주세요.|Yes. Please say {x} slowly.|はい。{x}をゆっくり言ってください。|예스. 플리즈 세이 {x} 슬로울리.|하이. {x}오 윳쿠리 잇테 쿠다사이.
+적어 드릴게요.|I'll write it down for you.|書きますね。|아일 라이트 잇 다운 포어 유.|카키마스네.
+감사합니다. 이 내용이 맞나요?|Thank you. Is this correct?|ありがとうございます。こちらで合っていますか。|땡큐. 이즈 디스 커렉트?|아리가토오 고자이마스. 코치라데 앗테 이마스카.
+네. 맞아요.|Yes. That's right.|はい。合っています。|예스. 댓츠 라이트.|하이. 앗테이마스.
+`);
+situation('가까운 시설 안내하기', '손님의 목적지 요청에 지도와 길 안내로 응답해 보세요.', ['약사', '손님'], `
+병원|a clinic|病院|어 클리닉|뵤오인
+화장실|a restroom|トイレ|어 레스트룸|토이레
+은행|a bank|銀行|어 뱅크|긴코오`, `
+다른 도움이 필요하신가요?|Do you need any other help?|ほかにお手伝いできることはありますか。|두 유 니드 에니 아더 헬프?|호카니 오테츠다이 데키루 코토와 아리마스카.
+근처에 {x} 있나요?|Is there {x} near here?|近くに{x}はありますか。|이즈 데어 {x} 니어 히어?|치카쿠니 {x}와 아리마스카.
+네. 지도에서 보여 드릴게요.|Yes. I'll show you on the map.|はい。地図でお見せします。|예스. 아일 쇼우 유 온 더 맵.|하이. 치즈데 오미세시마스.
+걸어서 갈 수 있나요?|Can I walk there?|歩いて行けますか。|캔 아이 워크 데어?|아루이테 이케마스카.
+네. 두 번째 모퉁이에서 왼쪽으로 가세요.|Yes. Turn left at the second corner.|はい。二つ目の角を左に曲がってください。|예스. 턴 레프트 앳 더 세컨드 코너.|하이. 후타츠메노 카도오 히다리니 마갓테 쿠다사이.
+알겠습니다. 알려 주셔서 감사합니다.|I see. Thank you for your help.|わかりました。ありがとうございます。|아이 씨. 땡큐 포어 유어 헬프.|와카리마시타. 아리가토오 고자이마스.
+`);
+situation('상품 가격 확인하기', '가격과 세금 포함 여부를 확인하고 수량을 결정해 보세요.', ['손님', '직원'], `
+물병|this water bottle|この水筒|디스 워터 바틀|코노 스이토오
+우산|this umbrella|この傘|디스 엄브렐러|코노 카사
+수건|this towel|このタオル|디스 타월|코노 타오루`, `
+{x} 가격이 얼마인가요?|How much is {x}?|{x}はいくらですか。|하우 머치 이즈 {x}?|{x}와 이쿠라 데스카.
+가격표에 적힌 금액입니다.|The price is on the tag.|値札に書いてある金額です。|더 프라이스 이즈 온 더 태그.|네후다니 카이테아루 킨가쿠 데스.
+세금이 포함되어 있나요?|Is tax included?|税込みですか。|이즈 택스 인클루디드?|제이코미 데스카.
+네. 세금 포함 가격입니다.|Yes. Tax is included.|はい。税込みの価格です。|예스. 택스 이즈 인클루디드.|하이. 제이코미노 카카쿠 데스.
+그럼 두 개 주세요.|I'll take two, then.|では、二つください。|아일 테이크 투, 덴.|데와, 후타츠 쿠다사이.
+알겠습니다. 계산대로 오세요.|Certainly. Please come to the checkout.|かしこまりました。レジへどうぞ。|서튼리. 플리즈 컴 투 더 체크아웃.|카시코마리마시타. 레지에 도오조.
+`);
+situation('예약 변경 요청하기', '예약 종류를 밝히고 가능한 날짜와 시간을 다시 확인해 보세요.', ['손님', '직원'], `
+식당 예약|my restaurant reservation|レストランの予約|마이 레스토런트 레저베이션|레스토랑노 요야쿠
+투어 예약|my tour booking|ツアーの予約|마이 투어 부킹|츠아아노 요야쿠
+진료 예약|my clinic appointment|診察の予約|마이 클리닉 어포인트먼트|신사츠노 요야쿠`, `
+{x} 변경하고 싶어요.|I'd like to change {x}.|{x}を変更したいです。|아이드 라이크 투 체인지 {x}.|{x}오 헨코오시타이 데스.
+언제로 변경하시겠어요?|When would you like to change it to?|いつに変更しますか。|웬 우드 유 라이크 투 체인지 잇 투?|이츠니 헨코오시마스카.
+내일 오전이 가능한가요?|Is tomorrow morning available?|明日の午前中は空いていますか。|이즈 투모로우 모닝 어베일러블?|아시타노 고젠추우와 아이테이마스카.
+오전 11시가 가능해요.|Eleven a.m. is available.|午前十一時なら空いています。|일레븐 에이엠 이즈 어베일러블.|고젠 주우이치지나라 아이테이마스.
+좋아요. 내일 11시로 부탁해요.|That's fine. Tomorrow at eleven, please.|では、明日の十一時でお願いします。|댓츠 파인. 투모로우 앳 일레븐, 플리즈.|데와, 아시타노 주우이치지데 오네가이시마스.
+변경했습니다. 내일 뵙겠습니다.|It's been changed. See you tomorrow.|変更しました。明日お待ちしています。|잇츠 빈 체인지드. 씨 유 투모로우.|헨코오시마시타. 아시타 오마치시테이마스.
+`);
+situation('도움 요청 전달하기', '곤란한 상황을 설명하고 필요한 도움을 요청해 보세요.', ['여행객', '직원'], `
+통역사|an interpreter|通訳|언 인터프리터|츠우야쿠
+호텔 직원|a hotel staff member|ホテルのスタッフ|어 호텔 스태프 멤버|호테루노 스탓푸
+역무원|a station staff member|駅員|어 스테이션 스태프 멤버|에키인`, `
+도와주시겠어요? 어떻게 해야 할지 모르겠어요.|Could you help me? I'm not sure what to do.|手伝っていただけますか。どうすればいいかわかりません。|쿠드 유 헬프 미? 아임 낫 슈어 왓 투 두.|테츠닷테 이타다케마스카. 도오스레바 이이카 와카리마셍.
+무슨 일이 있으세요?|What's the problem?|どうしましたか。|왓츠 더 프라블럼?|도오시마시타카.
+{x}와 이야기하고 싶어요.|I'd like to speak to {x}.|{x}と話したいです。|아이드 라이크 투 스피크 투 {x}.|{x}토 하나시타이 데스.
+연락해 드릴까요?|Would you like me to contact them?|連絡しましょうか。|우드 유 라이크 미 투 콘택트 뎀?|렌라쿠시마쇼오카.
+네. 여기서 기다릴게요.|Yes, please. I'll wait here.|はい、お願いします。ここで待ちます。|예스, 플리즈. 아일 웨이트 히어.|하이, 오네가이시마스. 코코데 마치마스.
+알겠습니다. 잠시만 기다려 주세요.|Certainly. Please wait a moment.|わかりました。少々お待ちください。|서튼리. 플리즈 웨이트 어 모먼트.|와카리마시타. 쇼오쇼오 오마치 쿠다사이.
+`);
+situation('제품 정보 확인 부탁하기', '모르는 제품의 정보를 추측하지 않고 확인하는 대화를 연습하세요.', ['약사', '손님'], `
+성분|the ingredients|成分|디 인그리디언츠|세이분
+유효기간|the expiration date|使用期限|디 엑스퍼레이션 데이트|시요오키겐
+제조사|the manufacturer|製造元|더 매뉴팩처러|세이조오모토`, `
+제품에 대해 궁금한 점이 있나요?|Do you have a question about this product?|この商品についてご質問はありますか。|두 유 해브 어 퀘스천 어바웃 디스 프로덕트?|코노 쇼오힌니 츠이테 고시츠몬와 아리마스카.
+{x} 확인하고 싶어요.|I'd like to check {x}.|{x}を確認したいです。|아이드 라이크 투 체크 {x}.|{x}오 카쿠닌시타이 데스.
+포장의 뒷면을 보겠습니다.|Let me look at the back of the package.|パッケージの裏を確認します。|렛 미 룩 앳 더 백 어브 더 패키지.|팟케에지노 우라오 카쿠닌시마스.
+글씨가 작아서 읽기 어렵네요.|The print is too small to read.|字が小さくて読みにくいです。|더 프린트 이즈 투 스몰 투 리드.|지가 치이사쿠테 요미니쿠이 데스.
+확인해서 적어 드릴게요.|I'll check and write it down for you.|確認して、書いてお渡しします。|아일 체크 앤 라이트 잇 다운 포어 유.|카쿠닌시테, 카이테 오와타시시마스.
+감사합니다. 기다릴게요.|Thank you. I'll wait.|ありがとうございます。待っています。|땡큐. 아일 웨이트.|아리가토오 고자이마스. 맛테이마스.
+`);
+situation('요청한 내용 다시 확인하기', '필요한 물품과 수량을 다시 말해 주문 실수를 줄여 보세요.', ['약사', '손님'], `
+거즈|gauze|ガーゼ|고즈|가아제
+면봉|cotton swabs|綿棒|카튼 스왑즈|멘보오
+물티슈|wet wipes|ウェットティッシュ|웻 와이프스|웻토 팃슈`, `
+필요하신 물품을 다시 확인할게요.|Let me confirm what you need.|必要なものをもう一度確認します。|렛 미 컨펌 왓 유 니드.|히츠요오나 모노오 모오 이치도 카쿠닌시마스.
+{x} 두 팩이 필요해요.|I need two packs of {x}.|{x}を二パックお願いします。|아이 니드 투 팩스 어브 {x}.|{x}오 니팟쿠 오네가이시마스.
+두 팩 맞으시죠?|Two packs, is that right?|二パックでよろしいですか。|투 팩스, 이즈 댓 라이트?|니팟쿠데 요로시이 데스카.
+죄송해요. 세 팩으로 바꿀게요.|Sorry. Make that three packs.|すみません。三パックにしてください。|쏘리. 메이크 댓 쓰리 팩스.|스미마셍. 산팟쿠니 시테 쿠다사이.
+알겠습니다. 세 팩 준비할게요.|Certainly. I'll get three packs.|かしこまりました。三パックご用意します。|서튼리. 아일 겟 쓰리 팩스.|카시코마리마시타. 산팟쿠 고요오이시마스.
+네. 이제 맞아요. 감사합니다.|Yes. That's correct now. Thank you.|はい。それで合っています。ありがとうございます。|예스. 댓츠 커렉트 나우. 땡큐.|하이. 소레데 앗테이마스. 아리가토오 고자이마스.
+`);
+situation('사진으로 물품 찾기', '사진을 통해 제품을 확인하고 같은 제품이 있는지 설명해 보세요.', ['약사', '손님'], `
+안대|a sleep mask|アイマスク|어 슬립 매스크|아이마스쿠
+얼음주머니|an ice bag|氷のう|언 아이스 백|효오노오
+약 보관함|a pill organizer|ピルケース|어 필 오거나이저|피루 케에스`, `
+찾는 제품의 사진이 있나요?|Do you have a photo of the product?|お探しの商品の写真はありますか。|두 유 해브 어 포우토우 어브 더 프로덕트?|오사가시노 쇼오힌노 샤신와 아리마스카.
+네. 이런 {x} 찾고 있어요.|Yes. I'm looking for {x} like this.|はい。このような{x}を探しています。|예스. 아임 루킹 포어 {x} 라이크 디스.|하이. 코노요오나 {x}오 사가시테이마스.
+사진을 조금 확대해 주시겠어요?|Could you make the photo a little bigger?|写真を少し拡大していただけますか。|쿠드 유 메이크 더 포우토우 어 리틀 비거?|샤신오 스코시 카쿠다이시테 이타다케마스카.
+네. 이제 보이시나요?|Sure. Can you see it now?|はい。これで見えますか。|슈어. 캔 유 씨 잇 나우?|하이. 코레데 미에마스카.
+네. 같은 제품이 있는지 확인할게요.|Yes. I'll check if we have the same one.|はい。同じものがあるか確認します。|예스. 아일 체크 이프 위 해브 더 세임 원.|하이. 오나지 모노가 아루카 카쿠닌시마스.
+감사합니다. 서두르지 않으셔도 돼요.|Thank you. There's no rush.|ありがとうございます。急がなくて大丈夫です。|땡큐. 데어즈 노 러시.|아리가토오 고자이마스. 이소가나쿠테 다이조오부 데스.
+`);
+situation('불편한 상품 문의 응대하기', '제품의 불편한 점을 듣고 포장과 구매 내역을 확인해 보세요.', ['약사', '손님'], `
+뚜껑|the cap|ふた|더 캡|후타
+지퍼|the zipper|ファスナー|더 지퍼|화스나아
+펌프|the pump|ポンプ|더 펌프|폰푸`, `
+무엇을 도와드릴까요?|How can I help you?|どうなさいましたか。|하우 캔 아이 헬프 유?|도오나사이마시타카.
+{x} 부분이 잘 작동하지 않아요.|There's a problem with {x}.|{x}の調子が悪いです。|데어즈 어 프라블럼 위드 {x}.|{x}노 초오시가 와루이 데스.
+제품을 보여 주시겠어요?|Could you show me the product?|商品を見せていただけますか。|쿠드 유 쇼우 미 더 프로덕트?|쇼오힌오 미세테 이타다케마스카.
+여기 있어요. 어제 샀어요.|Here it is. I bought it yesterday.|こちらです。昨日買いました。|히어 잇 이즈. 아이 봇 잇 예스터데이.|코치라 데스. 키노오 카이마시타.
+영수증이 있나요? 먼저 확인해 볼게요.|Do you have the receipt? Let me check first.|レシートはありますか。まず確認します。|두 유 해브 더 리시트? 렛 미 체크 퍼스트.|레시이토와 아리마스카. 마즈 카쿠닌시마스.
+네. 영수증도 가져왔어요.|Yes. I brought the receipt, too.|はい。レシートも持ってきました。|예스. 아이 브롯 더 리시트, 투.|하이. 레시이토모 못테키마시타.
+`);
+situation('상담 마무리와 이해 확인하기', '안내받은 내용을 다시 확인하고 대화를 마무리해 보세요.', ['약사', '손님'], `
+사용 순서|the steps|使う順番|더 스텝스|츠카우 준반
+보관 위치|the storage location|保管場所|더 스토리지 로우케이션|호칸바쇼
+문의 방법|how to contact us|問い合わせ方法|하우 투 콘택트 어스|토이아와세 호오호오`, `
+설명드린 내용이 이해되셨나요?|Was the explanation clear?|説明はわかりましたか。|워즈 디 엑스플러네이션 클리어?|세츠메이와 와카리마시타카.
+{x} 다시 확인하고 싶어요.|I'd like to confirm {x}.|{x}をもう一度確認したいです。|아이드 라이크 투 컨펌 {x}.|{x}오 모오 이치도 카쿠닌시타이 데스.
+물론이죠. 이 메모를 함께 봐 주세요.|Of course. Let's look at this note together.|もちろんです。一緒にこのメモを見てください。|어브 코어스. 렛츠 룩 앳 디스 노우트 투게더.|모치론 데스. 잇쇼니 코노 메모오 미테 쿠다사이.
+이제 이해했어요. 메모를 가져가도 되나요?|I understand now. May I keep the note?|わかりました。メモをもらってもいいですか。|아이 언더스탠드 나우. 메이 아이 킵 더 노우트?|와카리마시타. 메모오 모랏테모 이이 데스카.
+네. 가져가세요. 좋은 여행 되세요.|Yes. Please keep it. Enjoy your trip.|はい。お持ちください。よいご旅行を。|예스. 플리즈 킵 잇. 인조이 유어 트립.|하이. 오모치 쿠다사이. 요이 고료코오오.
+친절하게 도와주셔서 감사합니다.|Thank you for all your help.|親切にしてくださってありがとうございます。|땡큐 포어 올 유어 헬프.|신세츠니 시테 쿠다삿테 아리가토오 고자이마스.
+`);
+
+export const months = ['기본 상황 익히기', '대상을 바꾸어 확장하기', '실전 상황에 적용하기'];
+const fields = ['ko', 'en', 'ja', 'enReading', 'jaReading'];
+export const lessons = Array.from({ length: 3 }, (_, round) => situations.map((s, index) => {
+  const id = round * situations.length + index + 1;
+  const variant = s.variants[round];
+  const phrases = s.dialogue.map((row, i) => Object.fromEntries([
+    ['id', `${id}-${i + 1}`], ['lessonId', id], ['speaker', s.roles[i % 2]], ['role', i % 2 ? 'partner' : 'learner'],
+    ...fields.map((key, col) => [key, row[col].replaceAll('{x}', variant[col])])
+  ]));
+  return { id, month: round + 1, title: `${variant[0]} · ${s.title}`, situation: s.title, goal: s.goal,
+    learnerRole: s.roles[0], partnerRole: s.roles[1], focus: variant[0], minutes: 20, phrases, dialogue: phrases.map(p => p.id),
+    mission: `${s.roles[0]} 역할로 ${variant[0]} 상황을 연습하세요. 상대방의 말을 듣고 세 번 응답한 뒤, 역할을 바꾸어 다시 대화해 보세요.` };
+})).flat();
+export const cards = lessons.flatMap(l => l.phrases);
